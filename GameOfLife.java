@@ -14,7 +14,7 @@ public class GameOfLife {
 		//// test1(fileName);
 		//// test2(fileName);
 		//// test3(fileName, 3);
-		 play(fileName);
+		//// play(fileName);
 	}
 	
 	// Reads the data file and prints the initial board.
@@ -148,8 +148,8 @@ public class GameOfLife {
 	
 	// Prints the board. Alive and dead cells are printed as 1 and 0, respectively.
     public static void print(int[][] arr) {
-		for(int i = 0; i < arr.length; i++){
-			for(int j = 0; j < arr[i].length; j ++){
+		for(int i = 1; i < arr.length - 1; i++){
+			for(int j = 1; j < arr[i].length -1; j ++){
 				System.out.printf("%3s", arr[i][j]);
 			}
 			System.out.println();
