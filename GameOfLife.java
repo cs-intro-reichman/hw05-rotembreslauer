@@ -67,6 +67,7 @@ public class GameOfLife {
 		int[][] board = new int[rows + 2][cols + 2];
 		String line = "";
 
+		// #feedback - this loop is not needed, since when creating the board with no values, it takes the default ones, which are zero (for integers).
 		for(int i = 0; i < rows + 2; i ++){
 			for(int j = 0; j < cols + 2; j ++){
 				board[i][j] = 0;
@@ -79,7 +80,7 @@ public class GameOfLife {
 					if(j - 1 < line.length()){
 						if(line.charAt(j-1) == 'x'){
 							board[i][j] = 1;
-					}
+						}
 				
 					}	
 				}
@@ -98,6 +99,8 @@ public class GameOfLife {
 		for(int i = 0; i < board.length; i ++){
 			for(int j = 0; j < board[i].length; j ++){
 
+				// #feedback - in order to reduce the running time, and make the program more efficient, it is better to call cellValue once and save it in a variable.
+				// Additionally, the second and third "if"s are not needed, since you can just assign "NewBoard[i][j] = cellValue(board, i, j)".
 				if(i == 0 || i == board.length - 1 || j == 0 || j == board[i].length -1){
 					NewBoard[i][j] = board[i][j];
 				} else if (board[i][j] == cellValue(board, i, j)){
@@ -125,6 +128,7 @@ public class GameOfLife {
 	// Uses the count(board,i,j) function to count the number of alive neighbors.
 	public static int cellValue(int[][] board, int i, int j) {
 			int neigAlive = count(board, i, j);
+		// #feedback - note the indentation here.
 			if(board[i][j] == 1){ //alive
 				if(neigAlive < 2 || neigAlive > 3){
 				return 0;
@@ -143,6 +147,7 @@ public class GameOfLife {
 	// Assumes that i is at least 1 and at most the number of rows in the board - 1. 
 	// Assumes that j is at least 1 and at most the number of columns in the board - 1. 
 	public static int count(int[][] board, int i, int j) {
+		// #feedback - consider running with loops in these cases, to avoid this long code. Long code such as this will have higher risk of containing bugs (e.g. it's easier to accidentally wrtie the wrong row/col number). 
 		return board[i -1][j - 1] + board[i -1][j] + board[i -1][j + 1] + board[i][j - 1] + board[i][j + 1] + board[i + 1][j - 1] + board[i +1][j] + board[i +1][j + 1];
 	}
 	
